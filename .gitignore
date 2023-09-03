@@ -1,0 +1,55 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Django
+*.db
+*.sqlite3
+db.sqlite3
+db.sqlite3-journal
+*.log
+
+# Virtual Environment
+venv/
+env/
+
+# Static files (CSS, JavaScript, images)
+static/
+media/
+
+# Secret key
+*.key
+
+# Environment variables
+.env
+
+# Ignore IDE-specific files and directories
+.idea/
+.vscode/
+*.code-workspace
+
+# Ignore pipenv and poetry virtual environments
+Pipfile.lock
+poetry.lock
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore development settings and sensitive data in settings.py
+/settings/dev.py
+/settings/secret.py
+
+# Ignore compiled files for translations
+locale/
+*.mo
+*.pot
+
+# Django migration files
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Python cache files
+__pycache__/

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Currency Data</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Container for Crypto Currency Search -->
+    <div class="container mt-4">
+        <h1>Crypto Currency Search</h1>
+        <form action="{% url 'cryptocurrency-search' %}" method="get">
+            <div class="mb-3">
+                <label for="query" class="form-label">Search by id_name</label>
+                <input type="text" class="form-control" id="query" name="query" placeholder="Enter id_name">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <hr>
+        <!-- Check if there are currencies to display -->
+        {% if search_currencies %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Current Price</th>
+                    <th>High 24h</th>
+                    <th>Low 24h</th>
+                    <th>Price Change 24h</th>
+                    <th>Price Change Percentage 24h</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through the currencies and display data for each -->
+                {% for currency in search_currencies %}
+                <tr>
+                    <td>{{ currency.id }}</td>
+                    <td>{{ currency.name }}</td>
+                    <td>{{ currency.symbol }}</td>
+                    <td>${{ currency.current_price }}</td>
+                    <td>${{ currency.high_24h }}</td>
+                    <td>${{ currency.low_24h }}</td>
+                    <td>${{ currency.price_change_24h }}</td>
+                    <td>{{ currency.price_change_percentage_24h }}%</td>
+                    <td>
+                        <form action="{% url 'add-to-portfolio' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="currency_id" value="{{ currency.id }}">
+                            <button type="submit" class="btn btn-primary">Add to Portfolio</button>
+                        </form>
+                    </td> 
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+
+    <!-- Container for Crypto Currency Data -->
+    {% if not search_currencies %}
+    <div class="container mt-4">
+        <h1>Top 10 Crypto Currency Data</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Current Price</th>
+                    <th>High 24h</th>
+                    <th>Low 24h</th>
+                    <th>Price Change 24h</th>
+                    <th>Price Change Percentage 24h</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through the currencies and display data for each -->
+                {% for currency in crypto_currencies %}
+                <tr>
+                    <td>{{ currency.id }}</td>
+                    <td>{{ currency.name }}</td>
+                    <td>{{ currency.symbol }}</td>
+                    <td>${{ currency.current_price }}</td>
+                    <td>${{ currency.high_24h }}</td>
+                    <td>${{ currency.low_24h }}</td>
+                    <td>${{ currency.price_change_24h }}</td>
+                    <td>{{ currency.price_change_percentage_24h }}%</td>
+                    <td>
+                        <form action="{% url 'add-to-portfolio' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="currency_id" value="{{ currency.id }}">
+                            <button type="submit" class="btn btn-primary">Add to Portfolio</button>
+                        </form>
+                    </td>                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    <!-- Include Bootstrap JavaScript (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
