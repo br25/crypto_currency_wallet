@@ -7,6 +7,7 @@ urlpatterns = [
     # Wallet Api
     path('portfolio/', portfolio_views.PortfolioView.as_view(), name='add-to-portfolio'),
     #Referral Api
-    # path('referral/', portfolio_views.ReferralView.as_view(), name='referral-list'),
+    path('referral/', portfolio_views.ReferralView.as_view(), name='referral-list'),
+    path('remove-crypto/<str:currency_id>/', portfolio_views.RemoveCryptoCurrencyView.as_view(), name='remove_crypto_currency'),
 
 ]

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from crypto_auth.models import CustomUser as User
 
 class CryptoCurrency(models.Model):
     id = models.CharField(primary_key=True, max_length=100)

@@ -18,6 +18,7 @@ class CryptoCurrencySerializer(serializers.ModelSerializer):
 
 class PortfolioSerializer(serializers.ModelSerializer):
     user_username = serializers.SerializerMethodField()
+    cryptocurrency_data = CryptoCurrencySerializer(source='cryptocurrency', read_only=True)
 
     class Meta:
         model = Portfolio
@@ -26,6 +27,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
             'user',
             'user_username',
             'cryptocurrency',
+            'cryptocurrency_data',
             'quantity',
         )
 
@@ -33,6 +35,9 @@ class PortfolioSerializer(serializers.ModelSerializer):
         return obj.user.username
 
 class ReferralSerializer(serializers.ModelSerializer):
+    referrer_username = serializers.ReadOnlyField(source='referrer.username')
+    referred_user_username = serializers.ReadOnlyField(source='referred_user.username')
+
     class Meta:
         model = Referral
-        fields = '__all__'
+        fields = ('id', 'bonus_amount', 'referrer', 'referred_user', 'referrer_username', 'referred_user_username')

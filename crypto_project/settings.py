@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'drf_yasg',
     'crypto_app',
+    'crypto_auth',
 ]
 
 MIDDLEWARE = [
@@ -130,9 +131,15 @@ LOGGING = {
     }
 }
 
-# # rest Framework
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-# }
+
+# Default User
+AUTH_USER_MODEL = 'crypto_auth.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',  # Add any other authentication classes you need
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
