@@ -76,22 +76,22 @@ Follow these steps to set up and run the project locally:
 
 ![login Image](screenshot/login.jpg)
 
-![reset_password Image](screenshot/reset_password.jpg)
-
-![reset Image](screenshot/reset.jpg)
-
 ![home Image](screenshot/home.jpg)
 
 ![wallet Image](screenshot/wallet.jpg)
 
 ![remove_currency Image](screenshot/remove_currency.jpg)
 
-![search_result Image](screenshot/search_result.jpg)
-
 ![search_currency Image](screenshot/search_currency.jpg)
+
+![search_result Image](screenshot/search_result.jpg)
 
 ![search&other_currency Image](screenshot/search&other_currency.jpg)
 
 ![referred_code Image](screenshot/referred_code.jpg)
 
 ![get_bonus Image](screenshot/get_bonus.jpg)
+
+![reset_password Image](screenshot/reset_password.jpg)
+
+![reset Image](screenshot/reset.jpg)
